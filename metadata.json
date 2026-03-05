@@ -1,0 +1,5 @@
+{
+  "name": "PDF Remover",
+  "description": "A modern, client-side tool to easily remove pages from your PDF documents securely in your browser.",
+  "requestFramePermissions": []
+}
