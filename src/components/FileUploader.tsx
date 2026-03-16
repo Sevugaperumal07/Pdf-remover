@@ -48,9 +48,9 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`relative group cursor-pointer rounded-2xl border-2 border-dashed transition-all duration-300 p-12 text-center
-          ${isDragging 
-            ? 'border-emerald-500 bg-emerald-50' 
-            : 'border-emerald-200 hover:border-emerald-400 hover:bg-emerald-50/50'
+          ${isDragging
+            ? 'border-brand-primary bg-brand-light'
+            : 'border-brand-light hover:border-brand-primary/40 hover:bg-brand-light/50'
           }`}
       >
         <input
@@ -59,16 +59,16 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
           onChange={handleFileInput}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
-        
+
         <div className="flex flex-col items-center gap-4">
-          <div className="p-4 rounded-full bg-emerald-100 text-emerald-600 group-hover:scale-110 transition-transform duration-300">
+          <div className="p-4 rounded-full bg-brand-light text-brand-primary group-hover:scale-110 transition-transform duration-300">
             <Upload size={40} />
           </div>
           <div>
-            <p className="text-xl font-semibold text-emerald-900">
+            <p className="text-xl font-semibold text-brand-dark">
               {selectedFile ? selectedFile.name : 'Upload your PDF'}
             </p>
-            <p className="text-emerald-600/60 mt-1">
+            <p className="text-brand-primary/60 mt-1">
               Drag & Drop your PDF here or Click to Upload
             </p>
           </div>
@@ -76,12 +76,12 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
       </div>
 
       {selectedFile && (
-        <div className="mt-6 flex items-center justify-between p-4 bg-white rounded-xl border border-emerald-100 shadow-sm animate-in fade-in slide-in-from-bottom-2">
+        <div className="mt-6 flex items-center justify-between p-4 bg-white rounded-xl border border-brand-light shadow-sm animate-in fade-in slide-in-from-bottom-2">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+            <div className="p-2 bg-brand-light text-brand-primary rounded-lg">
               <File size={20} />
             </div>
-            <span className="font-medium text-emerald-900 truncate max-w-[200px] sm:max-w-md">
+            <span className="font-medium text-brand-dark truncate max-w-[200px] sm:max-w-md">
               {selectedFile.name}
             </span>
           </div>
