@@ -27,33 +27,33 @@ export const PageThumbnail: React.FC<PageThumbnailProps> = ({
       onClick={() => !disabled && onToggle()}
       className={cn(
         "group relative flex flex-col items-center gap-3 p-4 rounded-2xl border transition-all duration-300 cursor-pointer",
-        isSelected 
-          ? "border-emerald-500 bg-emerald-50 ring-2 ring-emerald-500/20" 
-          : "border-emerald-100 bg-white hover:border-emerald-300 hover:shadow-md",
+        isSelected
+          ? "border-brand-primary bg-brand-light ring-2 ring-brand-primary/20"
+          : "border-brand-light bg-white hover:border-brand-primary/40 hover:shadow-md",
         disabled && "opacity-50 cursor-not-allowed"
       )}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-emerald-50 shadow-sm">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-brand-light shadow-sm">
         <img
           src={thumbnailUrl}
           alt={`Page ${pageNumber}`}
           className="h-full w-full object-contain"
           referrerPolicy="no-referrer"
         />
-        
+
         <div className={cn(
           "absolute top-2 right-2 h-6 w-6 rounded-full border-2 flex items-center justify-center transition-all duration-300",
-          isSelected 
-            ? "bg-emerald-500 border-emerald-500 text-white scale-110" 
-            : "bg-white/80 border-emerald-200 text-transparent"
+          isSelected
+            ? "bg-brand-primary border-brand-primary text-white scale-110"
+            : "bg-white/80 border-brand-light text-transparent"
         )}>
           <Check size={14} strokeWidth={4} />
         </div>
       </div>
-      
+
       <span className={cn(
         "text-sm font-semibold transition-colors",
-        isSelected ? "text-emerald-700" : "text-emerald-900/60"
+        isSelected ? "text-brand-accent" : "text-brand-dark/60"
       )}>
         Page {pageNumber}
       </span>
