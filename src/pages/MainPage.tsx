@@ -48,7 +48,7 @@ export const MainPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-3xl bg-white rounded-3xl shadow-xl shadow-brand-dark/5 border border-brand-light p-8 md:p-12">
+      <div className="w-full max-w-3xl bg-brand-surface rounded-3xl shadow-brand border border-border-color p-8 md:p-12">
         <FileUploader onFileSelect={setSelectedFile} />
 
         <div className="mt-10 flex justify-center">
@@ -77,7 +77,7 @@ export const MainPage: React.FC = () => {
       </div>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-        <div className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-emerald-50 shadow-sm">
+        <div className="flex items-start gap-4 p-6 rounded-2xl bg-brand-surface border border-border-color shadow-sm">
           <div className="p-3 bg-brand-light text-brand-primary rounded-xl">
             <Shield size={24} />
           </div>
@@ -86,7 +86,7 @@ export const MainPage: React.FC = () => {
             <p className="text-sm text-brand-dark/60 mt-1">Your files never leave your device. We process everything locally in your browser.</p>
           </div>
         </div>
-        <div className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-emerald-50 shadow-sm">
+        <div className="flex items-start gap-4 p-6 rounded-2xl bg-brand-surface border border-border-color shadow-sm">
           <div className="p-3 bg-brand-light text-brand-primary rounded-xl">
             <Zap size={24} />
           </div>

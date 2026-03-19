@@ -20,25 +20,72 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
     setIsDragging(false);
   }, []);
 
-  const validateAndSetFile = (file: File) => {
-    if (file.type !== 'application/pdf') {
-      toast.error('Please upload a valid PDF file.');
-      return;
+  const validateFile = async (file: File): Promise<boolean> => {
+    // 1. Check size (max 50MB)
+    const MAX_SIZE = 50 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
+      toast.error('File is too large. Maximum size is 50MB.');
+      return false;
     }
+
+    // 2. Check extension
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+      toast.error('Please upload a file with a .pdf extension.');
+      return false;
+    }
+
+    // 3. Check MIME type (basic check)
+    if (file.type !== 'application/pdf' && file.type !== '') {
+      toast.error('Invalid file type. Please upload a PDF.');
+      return false;
+    }
+
+    // 4. Magic number check (Production grade)
+    try {
+      const headerBytes = await new Promise<Uint8Array>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(new Uint8Array(reader.result as ArrayBuffer));
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file.slice(0, 4));
+      });
+
+      // %PDF is 25 50 44 46 in hex
+      const isPDF = headerBytes[0] === 0x25 && 
+                    headerBytes[1] === 0x50 && 
+                    headerBytes[2] === 0x44 && 
+                    headerBytes[3] === 0x46;
+
+      if (!isPDF) {
+        toast.error('This file does not appear to be a real PDF.');
+        return false;
+      }
+    } catch (err) {
+      console.error('Validation error:', err);
+      toast.error('Error validating file.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const processFile = async (file: File) => {
+    const isValid = await validateFile(file);
+    if (!isValid) return;
+
     setSelectedFile(file);
     onFileSelect(file);
   };
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
+  const handleDrop = useCallback(async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
-    if (file) validateAndSetFile(file);
+    if (file) await processFile(file);
   }, []);
 
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) validateAndSetFile(file);
+    if (file) await processFile(file);
   };
 
   return (

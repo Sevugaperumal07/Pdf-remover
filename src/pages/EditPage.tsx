@@ -126,13 +126,13 @@ export const EditPage: React.FC = () => {
               <ArrowLeft size={20} />
               <span>Back to Upload</span>
             </button>
-            <div className="flex items-center gap-2 text-brand-dark/60 text-sm font-medium bg-white px-4 py-2 rounded-full border border-brand-light">
+            <div className="flex items-center gap-2 text-brand-dark/60 text-sm font-medium bg-brand-surface px-4 py-2 rounded-full border border-border-color">
               <Info size={16} />
               <span>Select pages you want to remove</span>
             </div>
           </div>
 
-          <div className="flex-1 bg-white rounded-3xl border border-brand-light shadow-sm p-6 overflow-y-auto min-h-[400px]">
+          <div className="flex-1 bg-brand-surface rounded-3xl border border-border-color shadow-sm p-6 overflow-y-auto min-h-[400px]">
             {isGeneratingThumbnails ? (
               <div className="h-full flex flex-col items-center justify-center gap-4">
                 <Spinner size="lg" />
@@ -157,15 +157,15 @@ export const EditPage: React.FC = () => {
 
         {/* Sidebar Panel */}
         <div className="w-full lg:w-80 flex flex-col gap-6">
-          <div className="bg-white rounded-3xl border border-brand-light shadow-sm p-6 sticky top-24">
+          <div className="bg-brand-surface rounded-3xl border border-border-color shadow-sm p-6 sticky top-24">
             <h3 className="text-xl font-bold text-brand-dark mb-6">Summary</h3>
 
             <div className="space-y-4 mb-8">
-              <div className="flex justify-between items-center py-3 border-b border-brand-light/30">
+              <div className="flex justify-between items-center py-3 border-b border-border-color/30">
                 <span className="text-brand-dark/60 font-medium">Total Pages</span>
                 <span className="text-brand-dark font-bold">{thumbnails.length}</span>
               </div>
-              <div className="flex justify-between items-center py-3 border-b border-brand-light/30">
+              <div className="flex justify-between items-center py-3 border-b border-border-color/30">
                 <span className="text-brand-dark/60 font-medium">Pages to Remove</span>
                 <span className="text-red-600 font-bold">{selectedPages.size}</span>
               </div>
