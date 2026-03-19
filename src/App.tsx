@@ -6,6 +6,9 @@ import { Footer } from './components/layout/Footer';
 import { MainPage } from './pages/MainPage';
 import { EditPage } from './pages/EditPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { LoginPage } from './pages/LoginPage';
+import { SignUpPage } from './pages/SignUp';
+
 
 export default function App() {
   return (
@@ -37,6 +40,8 @@ export default function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/edit" element={<EditPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </main>
         <Footer />

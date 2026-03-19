@@ -1,19 +1,160 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+:root {
+  --brand-primary: #059669; /* emerald-600 */
+  --brand-accent: #047857; /* emerald-700 */
+  --brand-dark: #022c22; /* emerald-950 */
+  --brand-light: #ecfdf5; /* emerald-50 */
+  --brand-surface: #ffffff;
+  --brand-background: #f8fafc;
+  --text-primary: #022c22;
+  --text-secondary: rgba(2, 44, 34, 0.6);
+  --border-color: #ecfdf5;
+  --card-shadow: 0 10px 25px -5px rgba(2, 44, 34, 0.05), 0 8px 10px -6px rgba(2, 44, 34, 0.05);
+}
+
+.dark {
+  --brand-primary: #10b981; /* emerald-500 */
+  --brand-accent: #34d399; /* emerald-400 */
+  --brand-dark: #ecfdf5; /* emerald-50 */
+  --brand-light: #064e3b; /* emerald-900 */
+  --brand-surface: #022c22; /* emerald-950 */
+  --brand-background: #011511; /* deeper dark green */
+  --text-primary: #ecfdf5;
+  --text-secondary: rgba(236, 253, 245, 0.6);
+  --border-color: #064e3b;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand Colors */
-  --color-brand-primary: var(--color-emerald-600);
-  --color-brand-dark: var(--color-emerald-950);
-  --color-brand-light: var(--color-emerald-50);
-  --color-brand-accent: var(--color-emerald-700);
-  --color-brand-surface: var(--color-white);
+  /* Semantic Brand Colors */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-background: var(--brand-background);
+  
+  /* Text & Border Colors */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-color: var(--border-color);
+  
+  /* Utilities */
+  --shadow-brand: var(--card-shadow);
 }
 
 @layer base {
   body {
-    @apply antialiased;
+    @apply antialiased text-text-primary bg-brand-background transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .auth-page {
+    @apply flex items-center justify-center p-4 bg-gradient-to-br from-brand-light to-brand-surface;
+  }
+
+  .auth-logo {
+    @apply flex flex-col items-center gap-2 mb-8;
+  }
+
+  .logo-icon {
+    @apply flex items-center justify-center bg-brand-primary text-white rounded-2xl shadow-lg shadow-brand-primary/20 transition-all;
+  }
+
+  .logo-icon.small {
+    @apply size-8 text-lg rounded-lg;
+  }
+
+  .auth-title {
+    @apply text-2xl font-bold tracking-tight text-brand-dark;
+  }
+
+  .auth-heading {
+    @apply text-3xl font-extrabold text-brand-dark mb-2;
+  }
+
+  .auth-heading.center {
+    @apply text-center;
+  }
+
+  .auth-subtext {
+    @apply text-brand-dark/60 font-medium mb-8;
+  }
+
+  .auth-subtext.center {
+    @apply text-center;
+  }
+
+  .auth-form {
+    @apply space-y-5;
+  }
+
+  .forgot-link {
+    @apply text-[10px] font-bold text-brand-primary hover:text-brand-accent transition-colors;
+  }
+
+  .auth-switch {
+    @apply text-center mt-6 text-sm font-medium text-brand-dark/60;
+  }
+
+  .auth-switch a {
+    @apply text-brand-primary font-bold hover:underline;
+  }
+
+  .touch-id-section {
+    @apply mt-8 pt-8 border-t border-border-color flex justify-center;
+  }
+
+  .auth-footer-text {
+    @apply text-center mt-8 text-[10px] font-bold tracking-widest text-brand-dark/20 uppercase;
+  }
+
+  .top-bar {
+    @apply flex items-center justify-between mb-8;
+  }
+
+  .brand {
+    @apply flex items-center gap-2;
+  }
+
+  .brand-text {
+    @apply text-sm font-bold text-brand-dark;
+  }
+
+  .captcha-box {
+    @apply flex items-center justify-between px-4 py-3 bg-brand-light/50 text-text-primary rounded-xl mb-2 border border-border-color;
+  }
+
+  .captcha-text {
+    @apply font-mono text-lg tracking-[0.5em] italic;
+  }
+
+  .refresh-captcha {
+    @apply text-white/50 hover:text-white transition-colors;
+  }
+
+  .checkbox-row {
+    @apply flex items-center gap-2 py-2;
+  }
+
+  .feature-row {
+    @apply mt-8 pt-6 border-t border-border-color flex justify-around;
+  }
+
+  .feature-item {
+    @apply flex flex-col items-center gap-1;
+  }
+
+  .feature-icon {
+    @apply text-xl;
+  }
+
+  .feature-item span:last-child {
+    @apply text-[10px] font-bold tracking-tighter text-brand-dark/40;
   }
 }
